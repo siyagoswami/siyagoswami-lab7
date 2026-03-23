@@ -1,3 +1,3 @@
-public class TransferStation {
+public class TransferStation extends Station {
     
 }
