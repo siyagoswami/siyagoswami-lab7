@@ -2,8 +2,8 @@ public class Station {
     public String color; 
     public String stop; 
     public boolean inService; 
-    public Station prevStation; 
-    public Station nextStation; 
+    public Station prev; 
+    public Station next; 
 
     public Station(String color, String stop) {
         this.color = color; 
@@ -12,11 +12,11 @@ public class Station {
     }
 
     public void addNext(Station s) {
-        nextStation = s; 
+        next = s; 
     }
 
     public void addPrev(Station s) {
-        prevStation = s; 
+        prev = s; 
     }
 
     public void connect(Station s) {
@@ -43,6 +43,6 @@ public class Station {
 
     public String toString() {
         return "STATION " + stop + ": " + color + " line, " + "in service: " + inService + 
-        ", previous station: " + (prevStation == null ? "none" : prevStation.stop) + ", next station: " + (nextStation == null ? "none" : nextStation.stop); 
+        ", previous station: " + (prev== null ? "none" : prev.stop) + ", next station: " + (next == null ? "none" : next.stop); 
     }
 }

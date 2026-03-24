@@ -2,29 +2,29 @@ import java.util.ArrayList;
 
 public class TransferStation extends Station {
 
-    public ArrayList<Station> transfers; 
+    public ArrayList<Station> otherStations; 
 
     public TransferStation(String color, String stop) {
         super(color, stop);
-        transfers = new ArrayList<Station>();
+        otherStations = new ArrayList<Station>();
     }
 
     public void addTransferStationPrev(Station s) {
-        transfers.add(s); 
-        s.nextStation = this; 
+        otherStations.add(s); 
+        s.next = this; 
     }
 
     public void addTransferStationNext(Station s) {
-        transfers.add(s); 
-        s.prevStation = this; 
+        otherStations.add(s); 
+        s.prev = this; 
     }
 
     public String toString() {
         String result = "TRANSFERSTATION " + stop + ": " + color + " line, " + "in service: " + inService + 
-        ", previous station: " + (prevStation == null ? "none" : prevStation.stop) + ", next station: " + (nextStation == null ? "none" : nextStation.stop) +
+        ", previous station: " + (prev == null ? "none" : prev.stop) + ", next station: " + (next == null ? "none" : next.stop) +
         "\n\tTransfers: \n"; 
 
-        for(Station s : transfers) {
+        for(Station s : otherStations) {
             result += "\t" + s.toString() + "\n";     
         }
 
