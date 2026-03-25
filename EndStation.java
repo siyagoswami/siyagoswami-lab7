@@ -1,14 +1,16 @@
 public class EndStation extends Station {
     
+    // same as a normal Station
     public EndStation(String color, String stop) {
         super(color, stop);
     }
 
     public void makeEnd() {
-        // previousStation should become whatever's in nextStation
-        if(next != null) {
+        // if the station currently only has a next, copy that into prev
+        if (next != null) {
             prev = next; 
-        } else if(prev != null) {
+        } else if (prev != null) {
+            // if the station currently only has a prev, copy that into next 
             next = prev; 
         }
     }

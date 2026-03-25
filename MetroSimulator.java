@@ -1,3 +1,5 @@
+import java.util.ArrayList; 
+
 public class MetroSimulator {
 	
 		// make all stations
@@ -27,10 +29,15 @@ public class MetroSimulator {
 		public static EndStation s5;
 
 	public static void main(String[] args){
-		initialize();
-		makeOrangeLine();
-		makeRedLine();
-		makePurpleLine();
+		initialize(); // create all station objects 
+		makeOrangeLine(); // connect orange line 
+		makeRedLine(); // connect red line to metro_center 
+		makePurpleLine(); // connect purple line to metro_center
+
+		// print transfer stations connected to metro_center
+		for(Station s : metro_center.otherStations) {
+    		System.out.println("transfer: " + s.stop);
+		}
 
 		int stops = va_square.tripLength(metro_center);
 		System.out.println("There are " + stops + " stops between Virginia Square and Metro Center");
@@ -65,10 +72,11 @@ public class MetroSimulator {
 
 	public static EndStation makeOrangeLine(){
 		//connect the other stations here
+		// build orange line straight through metro_center 
 		va_square.connect(clarendon);
 		va_square.makeEnd(); 
 		clarendon.connect(court_house); 
-		court_house.connect(rossyln); 
+		court_house.connect(rosslyn); 
 		rosslyn.connect(foggy_bottom); 
 		foggy_bottom.connect(farragut_west); 
 		farragut_west.connect(mcpherson_square); 
@@ -84,7 +92,9 @@ public class MetroSimulator {
 		woodley_park.connect(dupont_circle);
 		woodley_park.makeEnd();
 		dupont_circle.connect(farragut_north);
+		// farragut_north -> metro_center 
 		metro_center.addTransferStationPrev(farragut_north); 
+		// metro_center -> gallery_place 
 		metro_center.addTransferStationNext(gallery_place);
 		gallery_place.connect(judiciary_square); 
 		judiciary_square.makeEnd(); 
@@ -96,10 +106,14 @@ public class MetroSimulator {
 		s1.connect(s2);
 		s1.makeEnd(); 
 		s2.connect(s3); 
+		// s3 -> metro_center
 		metro_center.addTransferStationPrev(s3);
+		// metro_center -> s4 
 		metro_center.addTransferStationNext(s4);
 		s4.connect(s5); 
 		s5.makeEnd(); 
+		
 		return s1;
 	}
+
 }
